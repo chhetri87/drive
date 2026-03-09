@@ -14,10 +14,104 @@
         body { background-color: var(--bg); color: var(--text); min-height: 100vh; }
 
         /* Login Screen */
-        #auth-screen { display: flex; justify-content: center; align-items: center; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .login-card { background: rgba(255, 255, 255, 0.98); padding: 3rem; border-radius: 1.5rem; text-align: center; width: 100%; max-width: 420px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-        .google-btn { background: white; color: #333; border: 1px solid #ddd; padding: 12px; border-radius: 50px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; margin-top: 25px; transition: 0.3s; }
-        .google-btn:hover { background: #f1f5f9; transform: translateY(-2px); }
+        #auth-screen { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .login-card { 
+            background: rgba(255, 255, 255, 0.98); 
+            padding: 2.5rem; 
+            border-radius: 1.5rem; 
+            text-align: center; 
+            width: 100%; 
+            max-width: 400px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+        .login-card h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .login-card p {
+            color: #64748b;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .google-btn { 
+            background: white; 
+            color: #333; 
+            border: 1px solid #ddd; 
+            padding: 16px 24px; 
+            border-radius: 50px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; 
+            width: 100%; 
+            margin-top: 20px; 
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .google-btn:hover { 
+            background: #f8fafc; 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        .google-btn:active {
+            transform: translateY(0);
+        }
+        .google-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            #auth-screen {
+                padding: 15px;
+            }
+            .login-card {
+                padding: 2rem 1.5rem;
+                max-width: 100%;
+                margin: 0 10px;
+            }
+            .login-card h1 {
+                font-size: 1.75rem;
+            }
+            .login-card p {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+            .google-btn {
+                padding: 14px 20px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .login-card {
+                padding: 1.5rem 1rem;
+            }
+            .login-card h1 {
+                font-size: 1.5rem;
+            }
+            .google-btn {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+        }
 
         /* Dashboard & Navbar */
         #dashboard-screen { display: none; }
@@ -28,6 +122,17 @@
         .user-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
         .user-info h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
         .user-info p { font-size: 0.8rem; color: #64748b; }
+        .verified-icon { 
+            display: inline-flex; 
+            align-items: center; 
+            margin-left: 5px; 
+            vertical-align: middle;
+        }
+        .verified-icon svg { 
+            width: 16px; 
+            height: 16px; 
+            display: inline-block;
+        }
         .btn-logout { background: #fee2e2; color: var(--danger); border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-left: 15px; transition: 0.2s; }
         .btn-logout:hover { background: var(--danger); color: white; }
 
@@ -67,12 +172,18 @@
 
     <div id="auth-screen">
         <div class="login-card">
-            <h1 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-cloud-upload-alt"></i> Dipesh Drive</h1>
-            <p style="color: #64748b;">Secure & Smart Cloud Storage</p>
+            <div style="margin-bottom: 2rem;">
+                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-cloud" style="color: white; font-size: 2rem;"></i>
+                </div>
+                <h1>Welcome Back</h1>
+                <p>Sign in to access your cloud storage</p>
+            </div>
+            
             <button class="google-btn" onclick="handleAuth()">
-    <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" width="24" alt="Google Logo" style="margin-right: 10px;"> 
-    Sign in with Google
-</button>
+                <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" alt="Google Logo"> 
+                Sign in with Google
+            </button>
         </div>
     </div>
 
@@ -155,7 +266,7 @@
                 // Update HTML
                 const profileHTML = `
                     <div class="user-info" style="text-align:right;">
-                        <h4>${user.name}</h4>
+                        <h4>${user.name} <span class="verified-icon" title="Verified Account"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.707 7.707-5.5 5.5a1 1 0 0 1-1.414 0l-2.5-2.5a1 1 0 0 1 1.414-1.414L10.5 13.586l4.793-4.793a1 1 0 0 1 1.414 1.414z" fill="#3B82F6"/></svg></span></h4>
                         <p>${user.email}</p>
                     </div>
                     <img src="${user.picture}" class="user-avatar" alt="User">
@@ -326,5 +437,4 @@ document.onkeydown = (e) => {
 </body>
 
 </html>
-
 
